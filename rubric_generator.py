@@ -1,9 +1,17 @@
+from pathlib import Path
+
 class AssignmentRubricTemplate:
     _filename = ""
+    _folder = ""
+    _excel = ""
     _questions_dict = "questions"
 
-    def __init__(self, filename):
-        self._filename = filename
+    def __init__(self, assignment):
+        self._folder = assignment
+        dir = Path(self._folder)
+        dir.mkdir(parents=True, exist_ok=True)
+        self._filename = Path(self._folder) / Path(assignment + ".py")
+        self._excel = Path(assignment + ".xlsx")
 
     def append_to_file(self, text):
         '''
@@ -36,6 +44,8 @@ class AssignmentRubricTemplate:
             "################",
             '',
             'from tabulate import tabulate',
+            'import pandas as pd',
+            'from pathlib import Path',
             '',
             '########## HELPER FUNCTIONS ##########\n',
             'def generate_ranges(codes):',
@@ -83,7 +93,10 @@ class AssignmentRubricTemplate:
         self.append_to_file([
             "",
             'print()',
-            'print(tabulate(get_points(data = questions), headers="firstrow", tablefmt="grid"))',
+            'table = get_points(data=questions)',
+            'df = pd.DataFrame(table[1:], columns=table[0])',
+            f'df.to_excel(Path(__file__).parent / "{self._excel}", index=False, engine="openpyxl")',
+            'print(tabulate(table, headers="firstrow", tablefmt="grid"))',
             'print()',
             '',
             '#######################',
@@ -95,11 +108,11 @@ class AssignmentRubricTemplate:
 ## Parameters to the write function must be a subset of r, i, s, c, v
 
 if __name__ == "__main__":
-    AssignmentRubricTemplate(filename="lab1.py").write_file(r=  0,
-                                                            i=  0,
-                                                            s=  0,
-                                                            c=  0,
-                                                            v=  0
-                                                            )
+    AssignmentRubricTemplate(assignment="lab2").write_file(r=  0,
+                                                           i=  0,
+                                                           s=  0,
+                                                           c=  0,
+                                                           v=  0
+                                                           )
 
 ####################################################################
