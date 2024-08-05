@@ -17,7 +17,7 @@ class AssignmentRubricTemplate:
             else:
                 raise ValueError("Content must be a string or list of strings")
 
-    def write_file(self, r=0, i=0, s=0, c=0, v=0):
+    def write_file(self, **kwargs):
         '''
         Writes code to file
         This code creates a dictionary associating questions with their points
@@ -49,7 +49,7 @@ class AssignmentRubricTemplate:
             '    return ranges',
             '',
             'def get_points(data):',
-            '    table_data = [["Questions", "Subtotal"]]',
+            '    table_data = [["Questions", "Points", "Number", "Total"]]',
             '    order = ["R", "I", "S", "C", "V"]',
             '    order_index = {item: index for index, item in enumerate(order)}',
             '    qtype_list = list(set([k[0] for k in data.keys()]))',
@@ -58,11 +58,14 @@ class AssignmentRubricTemplate:
             '    for qtype in qtype_list_sorted:',
             '        for points in points_set:',
             '            codes = [key for key in data if data[key] == points and qtype in key]',
-            '            if len(codes) != 0:',
+            '            number = len(codes)',
+            '            if number != 0:',
             '                ranges = ", ".join(generate_ranges(codes))',
-            '                subtotal = f"{points} pt(s) x {len(codes)} = {points * len(codes)} pt(s)"',
-            '                table_data.append([ranges, subtotal])',
-            '    table_data.append(["Total", f"{sum(data.values())} points"])',
+            '                points_per_question = f"{points} pt(s)"',
+            '                total = f"{points * number} pt(s)"',
+            '                subtotal = f"{points} pt(s) x {number} = {points * number} pt(s)"',
+            '                table_data.append([ranges, points_per_question, number, total])',
+            '    table_data.append(["Grand Total", "", "", f"{sum(data.values())} points"])',
             '    return table_data',
             '',
             "########## RUBRIC ##########",
@@ -71,27 +74,12 @@ class AssignmentRubricTemplate:
             '',
         ])
 
-        if r != 0:
-            self.append_to_file("\n# R-type questions")
-            for n in range(0, r):
-                self.append_to_file(f"{self._questions_dict}['R{n+1}'] =\t1")
-        if i != 0:
-            self.append_to_file("\n# I-type questions")
-            for n in range(0, i):
-                self.append_to_file(f"{self._questions_dict}['I{n+1}'] =\t1")
-        if s != 0:
-            self.append_to_file("\n# S-type questions")
-            for n in range(0, s):
-                self.append_to_file(f"{self._questions_dict}['S{n+1}'] =\t1")
-        if c != 0:
-            self.append_to_file("\n# C-type questions")
-            for n in range(0, c):
-                self.append_to_file(f"{self._questions_dict}['C{n+1}'] =\t1")
-        if v != 0:
-            self.append_to_file("\n# V-type questions")
-            for n in range(0, v):
-                self.append_to_file(f"{self._questions_dict}['V{n+1}'] =\t1")
-        
+        for qtype, count in kwargs.items():
+            if count != 0:
+                self.append_to_file(f"\n# {qtype.upper()}-type questions")
+                for n in range(count):
+                    self.append_to_file(f"{self._questions_dict}['{qtype.upper()}{n+1}'] =\t1")
+
         self.append_to_file([
             "",
             'print()',
@@ -104,11 +92,12 @@ class AssignmentRubricTemplate:
         ])
 
 ####################################################################
+## Parameters to the write function must be a subset of r, i, s, c, v
 
 if __name__ == "__main__":
     AssignmentRubricTemplate(filename="lab1.py").write_file(r=  0,
                                                             s=  0,
-                                                            i=  0
+                                                            i=  0,
                                                             )
 
 ####################################################################
