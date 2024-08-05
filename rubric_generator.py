@@ -63,8 +63,8 @@ class AssignmentRubricTemplate:
             '                ranges = ", ".join(generate_ranges(codes))',
             '                points_per_question = f"{points} pt(s)"',
             '                total = f"{points * number} pt(s)"',
-            '                subtotal = f"{points} pt(s) x {number} = {points * number} pt(s)"',
-            '                table_data.append([ranges, points_per_question, number, total])',
+            '                subtotal = f"{points} x {number} = {total}"',
+            '                table_data.append([ranges, points_per_question, number, subtotal])',
             '    table_data.append(["Grand Total", "", "", f"{sum(data.values())} points"])',
             '    return table_data',
             '',
@@ -95,9 +95,11 @@ class AssignmentRubricTemplate:
 ## Parameters to the write function must be a subset of r, i, s, c, v
 
 if __name__ == "__main__":
-    AssignmentRubricTemplate(filename="lab1.py").write_file(r=  0,
-                                                            s=  0,
+    AssignmentRubricTemplate(filename="lab1.py").write_file(r=  4,
                                                             i=  0,
+                                                            s=  8,
+                                                            c=  0,
+                                                            v=  9
                                                             )
 
 ####################################################################
