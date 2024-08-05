@@ -94,14 +94,9 @@ class AssignmentRubricTemplate:
         
         self.append_to_file([
             "",
-            # "sum = 0",
-            # f"for i in {self._questions_dict}:",
-            # f"    sum += {self._questions_dict}[i]",
-            "",
             'print()',
             'print(tabulate(get_points(data = questions), headers="firstrow", tablefmt="grid"))',
             'print()',
-            '',
             '',
             '#######################',
             '# END OF GENERATED CODE',
@@ -111,9 +106,9 @@ class AssignmentRubricTemplate:
 ####################################################################
 
 if __name__ == "__main__":
-    AssignmentRubricTemplate(filename="lab1.py").write_file(r=  4, 
-                                                            s=  8, 
-                                                            i=  9
+    AssignmentRubricTemplate(filename="lab1.py").write_file(r=  0,
+                                                            s=  0,
+                                                            i=  0
                                                             )
 
 ####################################################################
