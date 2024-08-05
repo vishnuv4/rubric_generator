@@ -88,7 +88,7 @@ class AssignmentRubricTemplate:
             if count != 0:
                 self.append_to_file(f"\n# {qtype.upper()}-type questions")
                 for n in range(count):
-                    self.append_to_file(f"'{qtype.upper()}{n+1}':\t1,")
+                    self.append_to_file(f"\t'{qtype.upper()}{n+1}':\t1,")
 
         self.append_to_file([
             "",
