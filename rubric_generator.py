@@ -22,10 +22,10 @@ class AssignmentRubricTemplate:
         Writes code to file
         This code creates a dictionary associating questions with their points
         @param r[int] Number of R-type questions
-        @param i[int] Number of S-type questions
-        @param s[int] Number of R-type questions
-        @param c[int] Number of S-type questions
-        @param v[int] Number of S-type questions
+        @param i[int] Number of I-type questions
+        @param s[int] Number of S-type questions
+        @param c[int] Number of C-type questions
+        @param v[int] Number of V-type questions
         '''
         with open(self._filename, 'w'):
             pass
