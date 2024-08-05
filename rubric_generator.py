@@ -80,7 +80,7 @@ class AssignmentRubricTemplate:
             '',
             "########## RUBRIC ##########",
             '',
-            f"{self._questions_dict} = {{}}",
+            f"{self._questions_dict} = {{",
             '',
         ])
 
@@ -88,9 +88,11 @@ class AssignmentRubricTemplate:
             if count != 0:
                 self.append_to_file(f"\n# {qtype.upper()}-type questions")
                 for n in range(count):
-                    self.append_to_file(f"{self._questions_dict}['{qtype.upper()}{n+1}'] =\t1")
+                    self.append_to_file(f"'{qtype.upper()}{n+1}':\t1,")
 
         self.append_to_file([
+            "",
+            "}",
             "",
             'print()',
             'table = get_points(data=questions)',
