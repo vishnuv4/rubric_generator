@@ -6,7 +6,13 @@ This is a python script that automates the process of creating and updating assi
 
 Requires Python 3.12
 
-Run the setup.ps1 script. All it does is create a virtual environment and install the required packages.
+Open a powershell window in this directory and run the setup.ps1 script. 
+
+```
+.\setup.ps1
+```
+
+All it does is create a virtual environment and install the required packages.
 
 ## Usage
 
