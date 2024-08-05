@@ -108,32 +108,6 @@ class AssignmentRubricTemplate:
             '#######################'
         ])
 
-def get_lines(filepath):
-    with open(filepath, 'r') as file:
-        lines = file.readlines()
-
-    for line in lines:
-        line = line.rstrip()
-        print(f"'{line}'")
-
-
-def generate_ranges(codes):
-    codes.sort(key=lambda x: int(x[1:]))
-    ranges, start = [], codes[0]
-    for i in range(1, len(codes)):
-        if int(codes[i][1:]) != int(codes[i-1][1:]) + 1:
-            ranges.append(start if start == codes[i-1] else f"{start}-{codes[i-1]}")
-            start = codes[i]
-    ranges.append(start if start == codes[-1] else f"{start}-{codes[-1]}")
-    for r in ranges:
-        print(r)
-
-def get_points(data, qtype, points):
-    codes = [key for key in data if data[key] == points and qtype in key]
-    print(f"{qtype}-type questions worth {points} point(s)")
-    generate_ranges(codes)
-    print(f"\nSubtotal:\n{points} pt(s) x {len(codes)} = {points * len(codes)} pt(s)")
-
 ####################################################################
 
 if __name__ == "__main__":
