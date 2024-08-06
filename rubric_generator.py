@@ -98,7 +98,7 @@ class AssignmentRubricTemplate:
             'table = get_points(data=questions)',
             'df = pd.DataFrame(table[1:], columns=table[0])',
             f'df.to_excel(Path(__file__).parent / "{self._excel}", index=False, engine="openpyxl")',
-            'print(tabulate(table, headers="firstrow", tablefmt="grid"))',
+            'print(tabulate(table, headers="firstrow", tablefmt="simple_grid"))',
             'print()',
             '',
             '#######################',
