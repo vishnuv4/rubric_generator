@@ -20,7 +20,7 @@ To create a new template, update the assignment name and parameters in the rubri
 
 Then run the script using python. 
 
-If using VSCode, set the python interpreter to the venv created during the setup stage.
+If using VSCode, set the python interpreter to the venv created during the setup stage. VSCode has a hotkey to run files using Python.
 
 This will create a folder with the assignment name with a .py file of the same name as the assignment. 
 
