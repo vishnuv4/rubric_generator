@@ -43,28 +43,17 @@ def get_points(data):
 questions = {
 
 # R-type questions
-	'R1':	1,
+	'R1':	2,
 	'R2':	1,
-	'R3':	1,
+	'R3':	2,
 	'R4':	1,
-	'R5':	1,
+	'R5':	2,
 	'R6':	1,
-	'R7':	1,
-	'R8':	1,
-	'R9':	1,
-	'R10':	2,
-	'R11':	1,
-	'R12':	1,
-	'R13':	2,
-	'R14':	1,
 
 # I-type questions
 	'I1':	3,
 	'I2':	3,
 	'I3':	3,
-	'I4':	3,
-	'I5':	3,
-	'I6':	3,
 
 # S-type questions
 	'S1':	3,
@@ -73,13 +62,13 @@ questions = {
 	'S4':	3,
 
 # C-type questions
-	'C1':	7,
-	'C2':	7,
-	'C3':	9,
-	'C4':	11,
+	'C1':	5,
+	'C2':	10,
+	'C3':	10,
 
 # V-type questions
 	'V1':	15,
+	'V2':	15,
 
 }
 
