@@ -110,9 +110,9 @@ class AssignmentRubricTemplate:
 ## Parameters to the write function must be a subset of r, i, s, c, v
 
 if __name__ == "__main__":
-    AssignmentRubricTemplate(assignment="worksheet2").write_file(r= 15,
+    AssignmentRubricTemplate(assignment="").write_file(r= 0,
                                                        i=  0,
-                                                       s=  3,
+                                                       s=  0,
                                                        c=  0,
                                                        v=  0
                                                        )
